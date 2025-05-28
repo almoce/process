@@ -1,0 +1,90 @@
+@import url("observablehq:default.css");
+@import url("observablehq:theme-air.css");
+
+:root {
+  --ancizar-sans: "Ancizar Sans", sans-serif;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --theme-foreground: #1b1e23;
+    --theme-background-a: #ffffff;
+    --theme-foreground-focus: #c90fc3;
+  }
+  #observablehq-sidebar {
+    --theme-foreground-focus: black;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --theme-foreground: #ffffff;
+    --theme-background-a: #1b1e23;
+    --theme-foreground-focus: #fbbaff;
+  }
+  #observablehq-sidebar {
+    --theme-foreground-focus: white;
+  }
+}
+
+body {
+  font-family: var(--ancizar-sans);
+  margin: 0;
+}
+
+blockquote {
+  position: relative;
+  margin: 1.5rem 0rem;
+  padding: 0rem 1rem;
+  color: var(--theme-foreground-alt);
+}
+blockquote:before {
+  content: "";
+  background: var(--theme-foreground-fainter);
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  width: 0.3rem;
+}
+
+abbr[title] {
+  cursor: help;
+}
+
+code {
+  background: var(--theme-background-alt);
+}
+#observablehq-sidebar > ol:first-child > li a{
+  background: none;
+}
+
+#observablehq-sidebar > ol:first-child > li:before {
+  display:none;
+}
+
+#observablehq-sidebar a:hover {
+  text-decoration: none;
+}
+
+.footnote-ref {
+  font-size: 10px;
+}
+
+.footnote-backref {
+  font-size: 10px;
+}
+.footnotes-list {
+  font-size: 12px;
+  padding-left: 10px;
+}
+.footnotes-list li {
+  opacity: 0.5;
+}
+.footnotes-list li:hover {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+.footnotes-list p {
+  margin: 0px;
+  padding: 0px;
+}
