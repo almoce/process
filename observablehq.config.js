@@ -79,7 +79,7 @@ export default {
   pages,
 
   // Content to add to the head of the page, e.g. for a favicon:
-  head: '<link rel="icon" href="favicon_b.png" type="image/png" sizes="32x32"><meta name="color-scheme" />',
+  head: '<link rel="icon" href="favicon_b.png" type="image/png" sizes="32x32"><meta name="color-scheme" /><script defer src="https://uma.wenceye.com/script.js" data-website-id="e740ba3b-0cbf-4efe-87ec-dc3bd0f8bdfe"></script>',
 
   // The path to the source root.
   root: "src",
