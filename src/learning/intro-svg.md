@@ -1,5 +1,5 @@
 
-# Intro SVG with d3
+# Intro SVG syntax with d3
 ## A introduction to svg shape and command with d3.js
 
 *[SVG]: Scalable Vector Graphics  
@@ -476,7 +476,8 @@ The command for Bezier Curve have two type, cubic for `C` with three points para
 
 - `Q x1 y1, x y` / `q dx1 dy1, dx dy`: quatric curve
 - `C x1 y1, x2 y2, x y` / `c dx1 dy1, dx2 dy2, dx dy`: cubic curve
-- `S x2, y2, x, y` / `s dx2 dy2, dx dy`: smooth reflect curve
+- `S x2, y2, x, y` / `s dx2 dy2, dx dy`: shorthand/smooth curveto
+- `T x, y`/ `t x,y`: Shorthand/smooth quadratic Bézier curveto
 
 ```js echo
 const bezierCurveQ = new Elem('svg:path', {
@@ -495,6 +496,13 @@ const bezierCurveC = new Elem('svg:path', {
 
 const bezierCurveS = new Elem('svg:path', {
 	d: 'M 50 100 C 50 50, 100 50, 100 100 S 150 150, 150 100',
+	fill: 'none',
+	stroke: 'currentColor',
+	strokeWidth: 2
+})
+
+const bezierCurveT = new Elem('svg:path', {
+	d: 'M 50 100 Q 50 50, 100 50 T 150,100',
 	fill: 'none',
 	stroke: 'currentColor',
 	strokeWidth: 2
@@ -643,9 +651,20 @@ class ControlLayer {
 {
 	const svg = emptySVG.clone().select
 	new ControlLayer(svg, bezierCurveS.select)
+	svg.style('margin-right', '10px')
 	svg.append(() => bezierCurveS.node())
 	const textLabelNode = new Elem('svg:text', {x:5, y: 10})
 	textLabelNode.select.text('TYPE S').attr('class','labeltext')
+	svg.append(() => textLabelNode.node())
+	display(svg.node())
+}
+
+{
+	const svg = emptySVG.clone().select
+	new ControlLayer(svg, bezierCurveT.select)
+	svg.append(() => bezierCurveT.node())
+	const textLabelNode = new Elem('svg:text', {x:5, y: 10})
+	textLabelNode.select.text('TYPE T').attr('class','labeltext')
 	svg.append(() => textLabelNode.node())
 	display(svg.node())
 }
@@ -973,6 +992,48 @@ const form = view(Inputs.form([
 	display(svg.node())
 }
 ```
+
+
+---
+## Summerize 
+
+Here final we list the essencial common elements for svg and commands for path drawing. Combine theory with practice as above to have a better understanding the core of svg syntax.
+
+**Common SVG Elements**
+
+-  **`<svg>`**: The root container for SVG graphics.
+-  **`<rect>`**: Rectangle.
+-  **`<circle>`**: Circle.
+-  **`<ellipse>`**: Ellipse.
+-  **`<line>`**: Straight line.
+-  **`<polyline>`**: Series of connected lines.
+-  **`<polygon>`**: Closed shape with multiple sides.
+-  **`<path>`**: Complex shapes using path commands.
+-  **`<text>`**: Text element.
+-  **`<g>`**: Grouping element.
+-  **`<image>`**: Embed raster images.
+<!-- -  **<defs>**: Container for definitions (like gradients, patterns). -->
+<!-- -  **<use>**: Reuse elements defined elsewhere. -->
+
+
+**SVG Path Commands**
+
+- **`M`**: moveto (e.g., ‎`M x y`) — Move the “pen” to a new location.
+- **`L`**: lineto (e.g., ‎`L x y`) — Draw a straight line.
+- **`H`**: horizontal lineto (e.g., ‎`H x`) — Draw a horizontal line.
+- **`V`**: vertical lineto (e.g., ‎`V y`) — Draw a vertical line.
+- **`C`**: curveto (e.g., ‎`C x1 y1, x2 y2, x y`) — Draw a cubic Bézier curve.
+- **`S`**: smooth curveto — Draw a smooth cubic Bézier curve.
+- **`Q`**: quadratic Bézier curve (e.g., ‎`Q x1 y1, x y`) — Draw a quadratic Bézier curve.
+- **`T`**: smooth quadratic Bézier curveto — Draw a smooth quadratic Bézier curve.
+- **`A`**: elliptical arc (e.g., ‎`A rx ry x-axis-rotation large-arc-flag sweep-flag x y`) — Draw an arc.
+- **`Z`** or **z**: closepath — Close the current path.
+
+*Lowercase versions (e.g.,* ‎`m`*,* ‎`l`*,* ‎`c`*) use relative coordinates.*
+
+
+
+
 
 
 <style type="text/css">

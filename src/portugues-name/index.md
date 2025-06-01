@@ -1,10 +1,9 @@
-# Portugues Name Overview
+# Portugues names data analysis
 ## Top 100 names registed in Portugal
 
 [^name-data-source]: Instituto dos Registos e do Notariado | IRN.Justica.gov.pt
 , [Registo de Nomes (Masculino) ](https://dados.justica.gov.pt/dataset/nomesmasculino) , [Registo de Nomes (Feminino)](https://dados.justica.gov.pt/dataset/nomesfeminino)
 
- 
 
 An overview of name registrations in Portugal[^name-data-source]. The most commonly used names can be easily identified on the right side. The fading color indicates the popularity trend, showing whether a name’s usage is increasing or decreasing with each time of year.
 
@@ -28,8 +27,6 @@ for (let gender in data) {
 	})
 }
 ```
-
-
 
 ```js
 const groupData = d3.group(tableData, d => d.name)
@@ -71,8 +68,6 @@ Plot.plot({
 })
 ```
 
-
-
 ```js
 Inputs.table(tableData, {
 	columns: ['name', 'gender', 'year', 'total'],
@@ -83,3 +78,126 @@ Inputs.table(tableData, {
 	select: false
 })
 ```
+
+---
+
+Here is a list of ${groupData.size} names in the dataset. We can present the data in a different way using a circle visualization, where each ring corresponds to a year. By normalizing the count data for each name registration, we can better distinguish specific names. The dot size represent the normalized size within the time range, providing a clearer comparison across years.
+
+```js
+const svg = d3.create('svg')
+svg.attr('viewBox', '-200 -200 400 400')
+svg.attr('style', 'max-width: 800px; display: block; margin: auto;')
+// svg.attr('style', 'border: 1px solid #ccc')
+
+const list = Array.from(groupData.keys())
+let lineCount = 0
+const color = d3.scaleOrdinal(groupData.get(list[0]).map(i => i.year), d3.schemeCategory10);
+const tableTotals = tableData.map(i => i.total)
+const totalScale = d3.scaleLinear().domain([d3.min(tableTotals), d3.max(tableTotals)])
+const years = groupData.get(list[0]).map(i => i.year).sort((a,b) => b-a)
+
+const circleRange = (200 - 60)/4 * 0.8
+
+const circlelist = []
+for(let i = 0; i < 5; i++) {
+
+	const innerCircle = svg.append('circle').attr('cx', 0).attr('cy', 0).attr('r', (i+1) * circleRange)
+	.attr('fill', 'none').attr('stroke', '#333').attr('stroke-width', 0.1).attr('class', 'hiddenline')
+	
+	circlelist.push(innerCircle)
+
+}
+
+while(lineCount < groupData.size) {
+	const name = list[lineCount]
+	const item = groupData.get(name)
+	const gender = item[0].gender
+	const data = item.map(i => i.total)
+	const scale = d3.scaleLinear().domain([d3.min(data), d3.max(data)])
+
+	const angle = (Math.PI*2/groupData.size) * lineCount
+	const x = Math.cos(angle)
+	const y = Math.sin(angle)
+
+	item.sort((a,b) => b.year - a.year)
+
+	svg.append('line').attr('stroke', 'black').attr('stroke-width', 0.1)
+			.attr('x1', x * circleRange).attr('y1', y * circleRange).attr('x2', x * circleRange * 5).attr('y2', y * circleRange * 5)
+
+	item.forEach((v, i) => {
+			const {total, year} = v
+			const normalscale = scale(total)
+			const thisTotalScale = 250 - 100 * totalScale(total)
+			const dist = (i+1) * circleRange
+
+			const cx = dist * x
+			const cy = dist * y
+				
+
+			// svg.append('text').text(`${year} ${total}`).attr('font-size', '5px')
+			// .attr('x', cx).attr('y', cy)
+
+			svg.append('circle')
+			.attr('cx', cx).attr('cy', cy)
+			.attr('r', normalscale * 2)
+			.attr('stroke', 'black')
+			.attr('stroke-width', '0.1')
+			.attr('fill', `rgb(${thisTotalScale},${thisTotalScale},${thisTotalScale})`)
+	})
+	
+
+	// svg.append('circle').attr('cx', x * 90).attr('cy', y * 90).attr('r', 1)
+
+	svg.append('text').text(`${name}`).attr('font-size', '5px')
+	.attr('x', x * 155).attr('y', y * 155)
+	.attr('text-anchor', 'middle')
+
+	lineCount++
+}
+
+	const text = svg.append('text').text("").attr('font-size', '10px').attr('x', 0).attr('y', 5).attr('text-anchor', 'middle').attr('fill', '#ccc')
+	// const line2 = svg.append('line').attr('stroke', 'black').attr('stroke-width', 0.1)
+			// .attr('x1', 0).attr('y1', 0).attr('x2', 200).attr('y2', 200)
+
+// console.log(svg.node())
+
+let active = 0
+
+svg.on('pointermove', (e) => {
+	const [x, y] = d3.pointer(e)
+	const len = Math.sqrt(x*x + y*y)
+	// line2.attr('x2', x).attr('y2', y)
+	const idx = Math.min(Math.floor(len / (circleRange)), circlelist.length - 1)
+	if (active != idx) {
+		active = idx
+		circlelist.forEach( i => i.classed('showline', false))
+		circlelist[idx].classed('showline', true)
+		text.text(years[idx])
+	} else {
+	
+	}
+	// circlelist[idx].classed('showline', true)
+	// console.log(circlelist[idx].node())
+})
+
+```
+
+
+
+```js
+view(svg.node())
+```
+
+
+<style type="text/css">
+.hiddenline {
+	opacity: 0;
+	transition: all 0.3s;
+}
+.showline {
+	opacity: 1;
+}
+
+
+	
+</style>

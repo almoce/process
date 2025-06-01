@@ -37,6 +37,18 @@ toc: false
         </div>
 </div>
 
+<ul class="home-list">
+    <li>
+        <a href="/learning/intro-svg">Intro SVG syntax with d3</a>
+        <span>2025</span>
+    </li>
+    <li>
+        <a href="/portugues-name/index">Portugues names data analysis with d3</a>
+        <span>2024</span>
+    </li>
+</ul>
+
+
 ```js
 import * as d3 from "npm:d3";
 const height = 300
@@ -132,5 +144,29 @@ canvas {
 
 .note {
     color: var(--theme-foreground-muted);
+}
+
+.home-list {
+    border-top: 1px solid var(--theme-foreground-fainter) ;
+    max-width: 640px;
+    margin: auto;
+    padding: 0px;
+    margin-top: 30px;
+    padding-top: 30px;
+}
+
+.home-list a {
+    color: var(--theme-foreground-a);
+}
+.home-list span {
+    color: var(--theme-foreground-muted);
+}
+
+.home-list li:marker {
+    display: none;
+}
+.home-list li {
+    display: flex;
+    justify-content: space-between;
 }
 </style>

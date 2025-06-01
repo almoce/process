@@ -24,16 +24,6 @@ const footerElement = ({path}) => `<div style="text-align:right">Copyright © ${
 
 
 const pages = [
-  // isDevMode && {
-  //     name: 'Folder',
-  //     path: '/folder/',
-  //     open: false,
-  //     pages: [
-  //       {
-  //         name: 'test page', path: '/folder/test'
-  //       }
-  //     ] 
-  // },
     // {
     //   name: 'Projects',
     //   pages: [
@@ -46,12 +36,12 @@ const pages = [
         name: "Learning",
         // open: false,
         pages: [
-          {name: 'Intro SVG with d3', path: '/learning/intro-svg'}
+          {name: 'Intro SVG syntax with d3', path: '/learning/intro-svg'}
         ]
     },
-    // {
-    //   name: 'Portugues Names', path: '/portugues-name/index'
-    // },
+    {
+      name: 'Portugues names data analysis', path: '/portugues-name/index'
+    },
     // {
     //     name: "Weather report", path: '/weather-report'
     // },
@@ -63,10 +53,21 @@ const pages = [
     //     {name: "Dashboard", path: "/examples/example-dashboard"},
     //     {name: "Report", path: "/examples/example-report"}
     //   ]
-    // },
-    
-    
+    // },    
   ]
+
+if (isDevMode) {
+    pages.push({
+      name: 'Folder',
+      path: '/folder/',
+      open: false,
+      pages: [
+        {
+          name: 'test page', path: '/folder/test'
+        }
+      ] 
+  })
+}
 
 
 export default {
@@ -89,10 +90,10 @@ export default {
   // theme: ["light", "dark"],
   // style: './src/style.csss',
   globalStylesheets: ['https://fonts.googleapis.com/css2?family=Ancizar+Sans:ital,wght@0,100..1000;1,100..1000'],
-  // header: "this is header", // what to show in the header (HTML)
+  // header: '<div>back</div>' || "this is header", // what to show in the header (HTML)
   // footer: "Built with Observable with ♥︎.", // what to show in the footer (HTML)
   footer: footerElement, // what to show in the footer (HTML)
-  sidebar: true, // whether to show the sidebar
+  sidebar: isDevMode, // whether to show the sidebar
   // toc: true, // whether to show the table of contents
   pager: false, // whether to show previous & next links in the footer
   // output: "dist", // path to the output root for build
