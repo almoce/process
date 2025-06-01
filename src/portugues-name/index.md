@@ -116,8 +116,8 @@ while(lineCount < groupData.size) {
 	const scale = d3.scaleLinear().domain([d3.min(data), d3.max(data)])
 
 	const angle = (Math.PI*2/groupData.size) * lineCount
-	const x = Math.cos(angle)
-	const y = Math.sin(angle)
+	const x = Math.cos(angle - Math.PI/2)
+	const y = Math.sin(angle - Math.PI/2)
 
 	item.sort((a,b) => b.year - a.year)
 
@@ -152,10 +152,10 @@ while(lineCount < groupData.size) {
 				.style('left', `${x + 200 + 5}px`)
 				.style('top', `${y + 200 + 5}px`)
 				.html(`
-					<div>Name: ${name}</div>
-					<div>Gender: ${gender}</div>
-					<div>Total: ${total}</div>
-					<div>Year: ${total}</div>
+					<div><span>Name:</span><span>${name}</span></div>
+					<div><span>Gender:</span><span>${gender}</span></div>
+					<div><span>Total:</span><span>${total}</span></div>
+					<div><span>Year:</span><span>${total}</span></div>
 				`)
 			})
 			theDot.on('pointerleave', () => {
@@ -239,14 +239,22 @@ svg foreignObject {
 .hide .tooltip {
 	opacity: 0;
 }
+
+.tooltip div {
+	min-width: 30px;
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+}
+
 .tooltip {
 	opacity: 1;
 	transition: opacity 0.3s;
 	z-index: 1;
 	position: absolute;
 	font-size: 5px;
-	box-shadow: 0.2px 0.3px 1.2px rgba(0,0,0, 0.3);
-	border-radius: 3px;
+	box-shadow: 0.2px 0.4px 1.3px rgba(0,0,0, 0.2);
+	border-radius: 2px;
 	padding: 2px 5px;
 	background: #fff;
 	color: #000;

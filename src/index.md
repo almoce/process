@@ -37,16 +37,28 @@ toc: false
         </div>
 </div>
 
-<ul class="home-list">
-    <li>
-        <a href="/learning/intro-svg">Intro SVG syntax with d3</a>
-        <span>2025</span>
-    </li>
-    <li>
-        <a href="/portugues-name/index">Portugues names visual data analysis</a>
-        <span>2024</span>
-    </li>
-</ul>
+```jsx
+const list = [
+    {
+        title: 'Intro SVG syntax with d3',
+        link: '/learning/intro-svg',
+        date: '2025'
+    },
+    {
+        title: 'Portugues names visual data analysis',
+        link: '/portugues-name/index',
+        date: '2024'
+    }
+]
+```
+
+
+```jsx
+import {HomeList} from './components/homelist.js'
+display(<HomeList list={list} />)
+```
+
+
 
 
 ```js
@@ -157,6 +169,16 @@ canvas {
 
 .home-list a {
     color: var(--theme-foreground-a);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.home-list:hover a {
+    color: var(--theme-foreground-fainter);
+}
+.home-list:hover a:hover {
+    color: var(--theme-foreground-a);
+    text-decoration: none;
+
 }
 .home-list span {
     color: var(--theme-foreground-muted);
