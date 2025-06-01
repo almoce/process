@@ -40,7 +40,7 @@ const pages = [
         ]
     },
     {
-      name: 'Portugues names data analysis', path: '/portugues-name/index'
+      name: 'Portugues names visual data analysis', path: '/portugues-name/index'
     },
     // {
     //     name: "Weather report", path: '/weather-report'

@@ -1,4 +1,4 @@
-# Portugues names data analysis
+# Portugues names visual data analysis
 ## Top 100 names registed in Portugal
 
 [^name-data-source]: Instituto dos Registos e do Notariado | IRN.Justica.gov.pt

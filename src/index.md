@@ -43,7 +43,7 @@ toc: false
         <span>2025</span>
     </li>
     <li>
-        <a href="/portugues-name/index">Portugues names data analysis with d3</a>
+        <a href="/portugues-name/index">Portugues names visual data analysis</a>
         <span>2024</span>
     </li>
 </ul>
