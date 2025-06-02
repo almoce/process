@@ -158,37 +158,4 @@ canvas {
     color: var(--theme-foreground-muted);
 }
 
-.home-list {
-    border-top: 1px solid var(--theme-foreground-fainter) ;
-    max-width: 640px;
-    margin: auto;
-    padding: 0px;
-    margin-top: 30px;
-    padding-top: 30px;
-}
-
-.home-list a {
-    color: var(--theme-foreground-a);
-    text-decoration: none;
-    transition: color 0.3s;
-}
-.home-list:hover a {
-    color: var(--theme-foreground-fainter);
-}
-.home-list:hover a:hover {
-    color: var(--theme-foreground-a);
-    text-decoration: none;
-
-}
-.home-list span {
-    color: var(--theme-foreground-muted);
-}
-
-.home-list li:marker {
-    display: none;
-}
-.home-list li {
-    display: flex;
-    justify-content: space-between;
-}
 </style>
