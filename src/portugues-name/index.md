@@ -155,7 +155,7 @@ while(lineCount < groupData.size) {
 					<div><span>Name:</span><span>${name}</span></div>
 					<div><span>Gender:</span><span>${gender}</span></div>
 					<div><span>Total:</span><span>${total}</span></div>
-					<div><span>Year:</span><span>${total}</span></div>
+					<div><span>Year:</span><span>${year}</span></div>
 				`)
 			})
 			theDot.on('pointerleave', () => {
