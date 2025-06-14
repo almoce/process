@@ -358,7 +358,7 @@ dataToDraw.entries().forEach(i => {
 	  .attr('x', width - marginRight+10)
 	  .attr('y', y(last.value))
 
-	  labeltext.classed('hide', true)
+	  labeltext.classed('hide', true).attr('fill', 'currentColor')
 
 			 // Append a path for the line.
 	  const pathColor = svg.append("path")
