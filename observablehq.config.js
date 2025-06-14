@@ -42,6 +42,9 @@ const pages = [
     {
       name: 'Portugues names visual data analysis', path: '/portugues-name/index'
     },
+    {
+      name: 'World State', path: '/world-state/index'
+    },
     // {
     //     name: "Weather report", path: '/weather-report'
     // },

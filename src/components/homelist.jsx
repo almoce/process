@@ -1,12 +1,13 @@
 import styled from 'npm:styled-components'
 
 const HomeListUl = styled.ul`
-    border-top: 1px solid var(--theme-foreground-fainter);
+    // border-top: 1px solid var(--theme-foreground-fainter);
     max-width: 640px;
     margin: auto;
     padding: 0px;
     margin-top: 30px;
-    padding-top: 30px;
+    // padding-top: 30px;
+    
     a {
         color: var(--theme-foreground-a);
         text-decoration: none;

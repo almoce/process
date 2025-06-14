@@ -45,14 +45,19 @@ const list = [
         date: '2025'
     },
     {
+        title: 'World State - data visualization',
+        link: '/world-state/index',
+        date: '2025'
+    },
+    {
         title: 'Portugues names visual data analysis',
         link: '/portugues-name/index',
-        date: '2024'
+        date: '2025'
     }
 ]
 ```
 
-
+---
 ```jsx
 import {HomeList} from './components/homelist.js'
 display(<HomeList list={list} />)

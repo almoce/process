@@ -146,7 +146,7 @@ while(lineCount < groupData.size) {
 
 			theDot.on('pointerover', (e) => {
 				const [x, y] = d3.pointer(e)
-				console.log(x,y)
+				// console.log(x,y)
 				tipElem.classed('hide', false)
 				tipElem.select('div')
 				.style('left', `${x + 200 + 5}px`)
