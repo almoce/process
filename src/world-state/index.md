@@ -84,8 +84,8 @@ const svg = d3.create("svg")
 // Add a white sphere with a black border.
 svg.append("path")
   .datum({type: "Sphere"})
-  .attr("fill", "white")
-  .attr("stroke", "#CCC")
+  .attr("fill", "none")
+  .attr("stroke", "currentColor")
   .attr("d", path);
 
 const rename = {
@@ -151,6 +151,7 @@ svgCountryAreaGroup.append("title")
 
 
 const countryMesh = topojson.mesh(data.countrymesh, data.countrymesh.objects.countries, (a, b) => a !== b)
+
 // Add a white mesh.
 const borderpath = svg.append("path")
 	.datum(countryMesh)
@@ -184,10 +185,7 @@ view(svg.node())
 const dataElement = svg.append('g')
 const tipElem = svg.append('foreignObject')
 .attr('width', width).attr('height', height).classed('hide', true).attr('x', 0).attr('y', 0).style('position', 'relative')
-tipElem.append('xhtml:div').attr('class', 'tooltip').html(`
-	<div>Total: 0</div>
-	<div>Year: 0</div>
-`)
+tipElem.append('xhtml:div').attr('class', 'tooltip').html(``)
 
 const formatThousands = d3.format(",");
 
@@ -220,7 +218,7 @@ legend.append('circle')
 .attr('cy', 10)
 .attr('r', 5)
 .attr('fill', d => color(d))
-legend.append('text').text(d => d).attr('x', 20).attr('y', 15)
+legend.append('text').text(d => d).attr('x', 20).attr('y', 15).attr('fill', 'currentColor')
 
 let legegndspace = 0
 legend.attr("transform", (d, i, n) => {
@@ -373,7 +371,7 @@ dataToDraw.entries().forEach(i => {
 
 	  const path = svg.append("path")
 	      .attr("fill", "none")
-	      .attr("stroke", 'black')
+	      .attr("stroke", 'currentColor')
 	      .attr("stroke-width", 8)
 	      .style("opacity", 0)
 	      .attr("d", line(arr))
